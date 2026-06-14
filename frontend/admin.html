@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marble — Admin</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- Auth overlay -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-card">
+    <h1>Marble Admin</h1>
+    <p>Sales team access only</p>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" id="adminEmail" placeholder="nancy@chinookcorp.com" autocomplete="email">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="adminPassword" placeholder="••••••" autocomplete="current-password">
+    </div>
+    <div class="error-msg" id="adminLoginError"></div>
+    <button class="btn-primary btn-full" id="adminLoginBtn" onclick="doAdminLogin()">Sign in</button>
+    <div class="auth-toggle" style="margin-top:0.75rem">
+      Customer portal: <a href="/" style="color:var(--accent)">click here</a>
+    </div>
+  </div>
+</div>
+
+<!-- Admin panel -->
+<div class="admin-layout" id="adminLayout" style="display:none">
+  <div class="admin-header">
+    <h1>Purchase Requests</h1>
+    <div style="display:flex;align-items:center;gap:0.75rem">
+      <span id="refreshStatus" style="font-size:0.78rem;color:var(--muted)"></span>
+      <span id="adminUserLabel" style="font-size:0.82rem;color:var(--muted)"></span>
+      <button class="btn-secondary" onclick="doAdminLogout()" style="font-size:0.78rem;padding:0.3rem 0.7rem">Sign out</button>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" data-status="pending" onclick="switchTab('pending')">Pending</div>
+    <div class="tab" data-status="approved" onclick="switchTab('approved')">Approved</div>
+    <div class="tab" data-status="denied" onclick="switchTab('denied')">Denied</div>
+    <div class="tab" data-status="completed" onclick="switchTab('completed')">Completed</div>
+  </div>
+
+  <div id="requestsList"></div>
+</div>
+
+<script src="/static/admin.js"></script>
+</body>
+</html>
